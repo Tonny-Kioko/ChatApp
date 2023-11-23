@@ -64,7 +64,7 @@ def home(request):
 
     if posts is not None:
         context = {"posts": posts}
-        return render(request, "assets/index.html", context)
+        return render(request, "index.html", context)
     else:
         return JsonResponse(
             {"message": "Unable to get Posts, Check Later"},
@@ -111,7 +111,7 @@ def loginPage(request):
                 status=status.HTTP_401_UNAUTHORIZED,
             )
 
-    return render(request, "assets/login.html")
+    return render(request, "login.html")
 
 
 ##Logging out an Authenticated User
@@ -129,9 +129,9 @@ def postDetail(request, post_id):
     response = requests.get(user_comments_url)
 
     if response.status_code != 200:
-        return render(
-            request, "assets/error.html", {"error": "Failed to fetch post comments"}
-        )
+        return JsonResponse({
+            'error': 'The Data was not Fetched. Check Later'
+        }, status=status.HTTP_404_NOT_FOUND)
 
     user_comments = response.json()
 
@@ -152,7 +152,7 @@ def postDetail(request, post_id):
                 "title": post["title"],
                 "body": post["body"],
             }
-            return render(request, "assets/post_detail.html", context)
+            return render(request, "post_detail.html", context)
         else:
             return JsonResponse(
                 {"error": "Failed to fetch post details"},
@@ -219,7 +219,7 @@ async def userPosts(request):
             ]
 
             context = {"filtered_posts": filtered_posts}
-            return render(request, "assets/myposts.html", context)
+            return render(request, "myposts.html", context)
 
     else:
         return JsonResponse(
@@ -289,7 +289,7 @@ def profile(request):
     profile_data = get_user_data(logged_in_username)
 
     if profile_data is not None:
-        return render(request, 'assets/profile.html', {'profile_data': profile_data})
+        return render(request, 'profile.html', {'profile_data': profile_data})
     else:
         return JsonResponse({'error': 'User not found'}, status=404)
     
@@ -298,6 +298,6 @@ def myFeedData(request):
     interested_usernames = ['Maxime_Nienow', 'Leopoldo_Corkery', 'Kamren', 'Delphine']
     feed = usersFeed(interested_usernames)
     context = {'feed': feed}
-    return render(request, 'assets/myfeed.html', context)
+    return render(request, 'myfeed.html', context)
 
 
