@@ -1,1 +1,1 @@
-web: gunicorn 'Tchat.wsg'
+web: gunicorn Tchat.wsgi --log-file -
