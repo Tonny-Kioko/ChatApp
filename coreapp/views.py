@@ -3,6 +3,7 @@ import requests
 import aiohttp
 import asyncio
 from django.http import JsonResponse, HttpResponse
+from django.db.models import Q
 
 # Create your views here.
 
@@ -41,12 +42,20 @@ def index(request):
     asyncio.set_event_loop(loop)
     posts = loop.run_until_complete(fetch_posts())
     
+    # Get the search query from the request GET parameters
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+    # If there is a search query, filter the posts using list comprehension
+    if q:
+        posts = [post for post in posts if q.lower() in post['title'].lower() or q.lower() in post['body'].lower()]
+
     if posts is not None:
-        context = {'posts': posts}
+        context = {'posts': posts, 'q': q}
         return render(request, 'index.html', context)
     else:
         context = {'error_message': 'Failed to fetch data from the API'}
         return render(request, 'error.html', context)
+
 
 def login(request):
     if request.method == "POST":

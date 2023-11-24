@@ -552,3 +552,20 @@ a:hover {
 p {
     color: #888;
 }
+
+
+.header__search {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    width: 100%; /* Ensure it takes the full width of its container */
+  }
+  
+  .header__search label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header__search input {
+    margin-left: 10px; /* Adjust the spacing between the icon and input */
+  }
+  

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}profile{% endblock %}
+{% block title %}ElewaChatApp{% endblock %}
 {% block content %}
 {% load static %}
 
@@ -11,14 +11,16 @@
             <div class="profile-detail">Email: {{profile_data.email}}</div>
             <div class="profile-detail">Phone: {{profile_data.address.zipcode}}</div>
             <div class="profile-detail">City: {{profile_data.address.city}}</div>
-            <div class="profile-detail">street: {{profile_data.address.street}}</div>
-            <div class="profile-detail">Phone: {{profile_data.address.zipcode}}</div>
-            <div class="profile-detail">Website: <a href="">Website</a></div>
+            <div class="profile-detail">Street: {{profile_data.address.street}}</div>            
+            <div class="profile-detail">Website: <a href="">{{profile_data.website}}</a></div>
             
             <!-- Add other profile details as needed -->
         {% else %}
             <p>No profile data found for the logged-in user.</p>
         {% endif %}
+    </div>
+    <div class="profile-container"><a href="{% url 'mpesaapp:lipa_na_mpesa' %}">M-Pesa for Premium </a></div>
+        
     </div>
 </body>
 {% endblock content %}

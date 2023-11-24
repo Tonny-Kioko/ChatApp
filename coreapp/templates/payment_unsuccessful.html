@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}profile{% endblock %}
+{% block content %}
+{% load static %}
+
+<body>
+    
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="title-all text-center">
+                        <h2>Your Payment was Unsuccessful</h2>
+                        <br></br>
+                        <h3>Please refresh and try Again!
+                        </h3>
+                        <br></br>
+                        <h2>Continue shopping</h2>
+                        <a class="btn hvr-hover" type="button" href="{% url 'home' %}">Home</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock content %}

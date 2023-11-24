@@ -2,22 +2,61 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
     <title>{% block title %}ElewaChatApp - What's Happening?{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <!-- Add these in the head section of your HTML file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Add this style to your existing CSS or in a separate style tag */
+        .header__search {
+          display: flex;
+          justify-content: flex-start;
+          width: 100%;
+          padding-left: 20px; /* Adjust the padding as needed */
+        }
+      
+        .header__search label {
+          display: flex;
+          align-items: center;
+        }
+      
+        .header__search input {
+          margin-left: 10px; /* Adjust the spacing between the icon and input */
+        }
+      </style>
+
+ 
+      
 
 </head>
     <div class="header">
-        <div class="header-content">
+        <div class="header-content">            
+              
             <a href="{% url 'index' %}">ElewaChatApp - What's Happening?</a>
             <nav>
+                <form class="header__search" method="get" action="{% url 'index' %}">
+                    <label>
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                        <title>search</title>
+                        <path
+                          d="M32 30.586l-10.845-10.845c1.771-2.092 2.845-4.791 2.845-7.741 0-6.617-5.383-12-12-12s-12 5.383-12 12c0 6.617 5.383 12 12 12 2.949 0 5.649-1.074 7.741-2.845l10.845 10.845 1.414-1.414zM12 22c-5.514 0-10-4.486-10-10s4.486-10 10-10c5.514 0 10 4.486 10 10s-4.486 10-10 10z"
+                        ></path>
+                      </svg>
+                      <input name="q" placeholder="Search for Posts..." />
+                    </label>
+                </form>
                 <a href="{% url 'myfeed' %}" id="myfeed">Feed</a>
+                <td/>
                 <a href="{% url 'myposts' %}" id="myposts">Posts</a>
+                <td/>
                 <a id="profile" href="{% url 'profile' %}">My Profile</a>
+                <td/>
                 <button id="logoutbutton" style="display: none;" onclick="logout()">Logout</button><br>
+                <td/>
                 <a class="nav-link" href="#loginModal" data-bs-toggle="modal" data-bs-target="#loginModal" id="loginbutton">Login</a>
                 
             </nav>
