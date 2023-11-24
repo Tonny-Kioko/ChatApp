@@ -1,0 +1,1 @@
+web: gunicorn Tchat.wsgi --log-file -
